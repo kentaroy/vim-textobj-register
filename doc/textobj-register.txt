@@ -46,7 +46,7 @@ For example, if the content of the register as folows:
 	    --- Registers ---
 
 	    "" unnamed
-	        :
+	    "0 reg0
 	    "1 reg1
 	        :
 	        :
@@ -60,6 +60,36 @@ In this case, "unnamed" in the current buffer is selected.
 On the other hand, |<Plug>(textobj-register-a)| will take an additional key to
 be a "register name". If |<Plug>(textobj-register-a)| is followed by "1", 
 pattern from the first register ("reg1", in this case) is selected.
+
+This plugin is especially useful when invoked after vim-operator-replace
+(https://github.com/kana/vim-operator-replace). Suppose the following case
+(">" is the cursor position),
+>
+		\begin{center}
+		    >to be replaced
+		\end{center}
+
+where you want to replace the indented text with non-indented text with
+operator-replace. This results in
+>
+		\begin{center}
+		replaced text one
+		replaced text two
+		\end{center}
+<
+After the operation, you can add indents to the replaced text with ">ir".
+There should be another way to achieve it, but *textobj-register* will be the 
+most reliable method in this case. After all, you will get
+>
+		\begin{center}
+		    replaced text one
+		    replaced text two
+		\end{center}
+<
+
+Requirements:
+- Vim 7.2 or later
+- |textobj-user| 0.3.8 or later (vimscript#2100)
 
 Latest version:
 
