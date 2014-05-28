@@ -24,7 +24,6 @@ endfunction
 
 function! textobj#register#select_a()
     let name = nr2char(getchar())
-    echo 'name: ' . name
     return <SID>select(name)
 endfunction
 
