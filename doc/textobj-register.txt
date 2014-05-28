@@ -1,0 +1,123 @@
+*textobj-indent.txt*	Text objects for indented blocks of lines
+
+Version 0.0.1
+Copyright (C) 2014 Kentaro Yamamoto
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*textobj-indent-contents*
+
+Introduction		|textobj-register-introduction|
+Interface		|textobj-register-interface|
+  Mappings		  |textobj-register-mappings|
+Customizing		|textobj-register-customizing|
+Bugs			|textobj-register-bugs|
+Changelog		|textobj-register-changelog|
+
+
+
+
+==============================================================================
+INTRODUCTION					*textobj-register-introduction*
+
+*textobj-register* is a Vim plugin to provide text objects to select a 
+pattern from register. 
+
+For example, if the content of the register as folows:
+>
+	    --- Registers ---
+
+	    "" unnamed
+	        :
+	    "1 reg1
+	        :
+	        :
+	    "a rega
+	        :
+	        :
+
+|<Plug>(textobj-register-i)| will select a pattern in unnamed register. 
+In this case, "unnamed" in the current buffer is selected.
+
+On the other hand, |<Plug>(textobj-register-a)| will take an additional key to
+be a "register name". If |<Plug>(textobj-register-a)| is followed by "1", 
+pattern from the first register ("reg1", in this case) is selected.
+
+Latest version:
+
+https://github.com/kentaroy/vim-textobj-register
+
+
+
+==============================================================================
+INTERFACE					*textobj-register-interface*
+
+------------------------------------------------------------------------------
+MAPPINGS					*textobj-register-mappings*
+
+These key mappings are defined in Visual mode and Operator-pending mode.
+
+<Plug>(textobj-register-a)			*<Plug>(textobj-register-a)*
+			Like |<Plug>(textobj-indent-i)|, but it takes
+                        additional key to be the "register name", where the 
+                        pattern is taken from.
+
+
+<Plug>(textobj-register-i)			*<Plug>(textobj-register-i)*
+			Select the pattern in unnamed register. 
+
+==============================================================================
+CUSTOMIZING					*textobj-register-customizing*
+
+				    *g:textobj_register_no_default_key_mappings*
+					    *:TextobjRegisterDefaultKeyMappings*
+This plugin will define the following key mappings in Visual mode and
+Operator-pending mode automatically.  If you don't want these key mappings,
+define |g:textobj_register_no_default_key_mappings| before this plugin is loaded
+(e.g. in your |vimrc|).  You can also use |:TextobjRegisterDefaultKeyMappings|
+to redefine these key mappings.  This command doesn't override existing {lhs}s
+unless [!] is given.
+
+	{lhs}	{rhs}			~
+	-----	----------------------	~
+	ar	<Plug>(textobj-register-a)
+	ir	<Plug>(textobj-register-i)
+
+
+
+
+==============================================================================
+BUGS						*textobj-register-bugs*
+
+
+
+==============================================================================
+CHANGELOG					*textobj-register-changelog*
+
+0.0.0   2014-05-28T13:44:51+09:00             *textobj-register-changelog-0.0.0*  
+	- Initial version.
+
+
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
+
